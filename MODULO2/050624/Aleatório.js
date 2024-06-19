@@ -1,4 +1,4 @@
-const maxNumbers = 8
+const maxNumbers = 110
 let list = []
 let randomNumber
 let tmp
