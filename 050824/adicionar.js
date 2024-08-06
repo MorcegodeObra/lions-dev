@@ -1,18 +1,6 @@
-function adicionar(prompt,residencias,callback){
-    let nome = prompt('Qual o nome da Vila?');
-    let rua = prompt('Qual o nome da Rua?');
-    let resi = prompt('Qual o numero da residencia?');
-    let moradores = [];
-    let i =0;
-    while(i==0){
-        let morador = prompt('Qual o nome do morador?');
-        moradores.push(morador);
-        let opcao = prompt('Gostaria de adicionar outro morador?(sim)(nao)').toLowerCase();
-        if(opcao =='nao'){
-            i++
-        };
-    };
-    residencias.push({Bairro: nome,Rua: rua,Numero: resi,Morador: moradores})
+function adicionar(residencias,callback,nome,rua,resi,moradores){
+    let id = residencias[residencias.length-1].id+1
+    residencias.push({id: id,Bairro: nome,Rua: rua,Numero: resi,Morador: moradores});
     console.log('Residencia adicionada ocm sucesso!! Retornando...');
     callback();
 };

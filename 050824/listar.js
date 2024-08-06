@@ -4,7 +4,7 @@ function listar(residencias,callback){
         callback();
     }else{
         residencias.forEach((residencia,index) =>{
-            console.log(`ID: ${index+1},Bairro: ${residencia.Bairro},Rua: ${residencia.Rua},Número: ${residencia.Numero}`);
+            console.log(`ID: ${residencia.id},Bairro: ${residencia.Bairro},Rua: ${residencia.Rua},Número: ${residencia.Numero}`);
             residencia.Morador.forEach((nome)=>{
                 console.log(`Nome: ${nome}`);
             });
