@@ -1,7 +1,8 @@
-function adicionar(residencias,callback,nome,rua,resi,moradores){
-    let id = residencias[residencias.length-1].id+1
-    residencias.push({id: id,Bairro: nome,Rua: rua,Numero: resi,Morador: moradores});
-    console.log('Residencia adicionada ocm sucesso!! Retornando...');
+function adicionar(contatos,callback,nome,email,contato){
+    let existe = false
+    let id = contatos[contatos.length-1].id+1
+    contatos.push({id: id,nome: nome,email: email,contato: contato});
+    console.log('Contato adicionada ocm sucesso!! Retornando...');
     callback();
 };
 module.exports = {adicionar}

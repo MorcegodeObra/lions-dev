@@ -1,56 +1,86 @@
 const prompt = require('prompt-sync')();
 const {adicionar} = require('./adicionar');
 const {atualizar} = require('./atualizar');
+const { contatos } = require('./contatos');
 const {listar} = require('./listar');
 const {remover} = require('./remover');
-const {residencias} = require('./residencias');
 
 let update
 let posicao
-let nome
-let rua
-let resi
-let moradores = []
 
 function menuPrincipal(){
 console.log(`Seja bem vindo,abaixo estão as funções em funcionamento:
-    1. Adicionar Residencias
-    2. Listar Residencias
-    3. Atualizar Residencias
-    4. Remover Residencias
+    1. Adicionar usuário
+    2. Listar usuários
+    3. Atualizar usuário
+    4. Remover usuário
     5. Sair`);
     let escolha = prompt('Qual a função que vamos realizar conforme numeros acima?');
     switch (escolha){
         case '1':
-            formulário();
-            adicionar(residencias,menuPrincipal,nome,rua,resi,moradores);
+            let nome = prompt('Qual o nome do usuário?');
+            let email = prompt('Qual o email do usuário?');
+            let i =0;
+            let contato = []
+            let emailExistente = contatos.find(contato => contato.email === email)
+            if(emailExistente == undefined){
+            while(i==0){
+                let contato2 = prompt('Qual o contato do usuário?');
+                contato.push(contato2);
+                let opcao = prompt('Gostaria de adicionar outro contato?(sim)(nao)').toLowerCase();
+                if(opcao =='nao'){
+                    i++
+                };
+            };
+            let verificacao
+            adicionar(contatos,menuPrincipal,nome,email,contato);
+        }else{
+            console.log("Email já existente crie novamente, retornando...")
+            menuPrincipal()
+        }
             break;
         case '2':
-            listar(residencias,menuPrincipal);
+            listar(contatos,menuPrincipal);
             menuPrincipal();
             break;
         case '3':
-            listar(residencias,menuPrincipal);
-            update = parseInt(prompt('Qual residencia gostaria de atualizar?'));
-            posicao = residencias.findIndex(residencia=> residencia.id == update);
-            if(posicao<0 || posicao>=residencias.length){
+            listar(contatos,menuPrincipal);
+            update = parseInt(prompt('Qual usuário gostaria de atualizar?'));
+            posicao = contatos.findIndex(contatos=> contatos.id == update);
+            if(posicao<0 || posicao>=contatos.length){
                 console.log('Numero não reconhecido ou não existente,retornando para o menu...');
                 menuPrincipal();
             }else{
-                formulário();
-                atualizar(residencias,posicao,nome,rua,resi,moradores);
-            }
+                let nome = prompt('Qual o nome do usuário?');
+                let email = prompt('Qual o email do usuário?');
+                let i =0;
+                let contato = [];
+                let emailExistente = contatos.find(contato => contato.email === email);
+                if(emailExistente == undefined){
+                while(i==0){
+                    let contato2 = prompt('Qual o contato do usuário?');
+                    contato.push(contato2);
+                    let opcao = prompt('Gostaria de adicionar outro contato?(sim)(nao)').toLowerCase();
+                    if(opcao =='nao'){
+                        i++;
+                    };
+                };
+                atualizar(contatos,posicao,nome,email,contato);
+        }else{
+            console.log("Email já existente tente novamente, retornando...");
+        };
+    };
             menuPrincipal();
             break;
         case '4':
-            listar(residencias,menuPrincipal);
-            update = parseInt(prompt('Qual residencia gostaria de remover?'));
-            posicao = residencias.findIndex(residencia=> residencia.id == update);
-            if(posicao<0 || posicao>=residencias.length){
+            listar(contatos,menuPrincipal);
+            update = parseInt(prompt('Qual usuário gostaria de remover?'));
+            posicao = contatos.findIndex(contatos=> contatos.id == update);
+            if(posicao<0 || posicao>=contatos.length){
                 console.log('Numero não reconhecido ou não existente,retornando para o menu...');
                 menuPrincipal();
             }else{
-                remover(residencias,posicao);
+                remover(contatos,posicao);
             }
             menuPrincipal();
             break;
@@ -60,21 +90,6 @@ console.log(`Seja bem vindo,abaixo estão as funções em funcionamento:
             console.log('Não entendi seu número,digite novamente...');
             menuPrincipal();
             break;
-    };
-};
-
-function formulário(){
-    nome = prompt('Qual o nome da Vila?');
-    rua = prompt('Qual o nome da Rua?');
-    resi = prompt('Qual o numero da residencia?');
-    let i =0;
-    while(i==0){
-        let morador = prompt('Qual o nome do morador?');
-        moradores.push(morador);
-        let opcao = prompt('Gostaria de adicionar outro morador?(sim)(nao)').toLowerCase();
-        if(opcao =='nao'){
-            i++
-        };
     };
 };
 

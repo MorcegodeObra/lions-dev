@@ -1,5 +1,5 @@
-function remover(residencias,posicao){
-        residencias.splice(posicao,1);
-        console.log('Residencia removida com sucesso!! Retornando...');
+function remover(contatos,posicao){
+        contatos.splice(posicao,1);
+        console.log('Usuário removido com sucesso!! Retornando...');
 };
 module.exports = {remover}

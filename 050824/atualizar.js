@@ -1,5 +1,6 @@
-function atualizar(residencias,update,nome,rua,resi,moradores){
-    residencias[update]=({Bairro: nome,Rua: rua,Numero: resi,Morador: moradores});
-    console.log('Residencia adicionada com sucesso!! Retornando...');
+function atualizar(contatos,posicao,nome,email,contato){
+    let id = contatos[posicao].id
+    contatos[posicao]=({id: id,nome: nome,email: email,contato: contato});
+    console.log('Contato atualizado com sucesso!! Retornando...');
 };
 module.exports = {atualizar};
