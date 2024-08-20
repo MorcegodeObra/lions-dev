@@ -1,10 +1,15 @@
+let contatos = [
+    {id: 1, nome: 'Gabriel', email: 'geefoliveira@gmail.com', contato: [42999802966,42936182268]},
+    {id: 2, nome: 'Igor', email: 'igorenrique@gmail.com', contato: [42999802966,42936182268]}
+];
+
 function servidor(requisicao){
-    switch(requisicao.escolha){
+    const {escolha,dados} = requisicao
+    switch(escolha){
         case 1:
-            adicionar(requisicao)
-            break
+            return adicionar(dados)
         case 2:
-            listar(requisicao)
+            listar()
             break
         case 3:
             atualizar(requisicao)
@@ -14,12 +19,14 @@ function servidor(requisicao){
             break
     }
 }
-function adicionar(requisicao){
-
+function adicionar(dados){
+    contatos.push({id : 3,nome: dados.nome,email:dados.email,contato:dados.contato})
+    console.log(contatos)
+    return ('Executado')
 };
 
 function listar(requisicao){
-    console.log(requisicao.dados)
+    console.log(contatos)
 };
 
 function atualizar(contatos,posicao,nome,email,contato,update){
@@ -27,9 +34,7 @@ function atualizar(contatos,posicao,nome,email,contato,update){
 };
 
 function remover(requisicao){
-    requisicao.dados.contatos.splice(requisicao.dados.posicao,1)
-    console.log(requisicao.dados)
-    console.log('Deletado')
+
 };
 
 module.exports = servidor
