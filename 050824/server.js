@@ -15,7 +15,10 @@ function servidor(requisicao){
     }
 }
 function adicionar(requisicao){
-
+    const { nome, contato, email } = requisicao.dados;
+    const novoId = requisicao.dados.contatos.length + 1;
+    requisicao.dados.contatos.push({id: novoId, nome, contato, email});
+    console.log('Contato adicionado');
 };
 
 function listar(requisicao){
