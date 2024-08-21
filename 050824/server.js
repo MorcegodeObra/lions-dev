@@ -23,7 +23,14 @@ function listar(requisicao){
 };
 
 function atualizar(contatos,posicao,nome,email,contato,update){
+const { contatos, posicao, nome, contato, email } = requisicao.dados;
 
+    if (posicao >= 0 && posicao < contatos.length) {
+        contatos[posicao] = { id: contatos[posicao].id, nome, contato, email };
+        console.log('Contato atualizado');
+    } else {
+        console.log('Posição inválida');
+    }
 };
 
 function remover(requisicao){
