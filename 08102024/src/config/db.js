@@ -5,7 +5,7 @@ dotenv.config()
 
 const connectDB = async()=>{
     mongoose
-    .connect(process.env.linkBancoDados)
+    .connect("mongodb://localhost:27017/funeraria")
     .then(()=> console.log('Conecatado ao MongoDB'))
     .catch((error) => console.log(error))
 }

@@ -1,4 +1,4 @@
-import { Schema,model } from "mongoose";
+import mongoose, { Schema,model } from "mongoose";
 
 const vivoSchema = new Schema({
     nome:{
@@ -18,5 +18,5 @@ const vivoSchema = new Schema({
         required:true
     }
 })
-
-export default model("Vivo",vivoSchema)
+const Vivo = mongoose.model("Vivo",vivoSchema)
+export default Vivo

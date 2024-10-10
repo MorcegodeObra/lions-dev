@@ -21,7 +21,11 @@ export const listarVivo = async(req,res)=>{
 export const atualizarVivo = async(req,res)=>{
     try {
         const atualizarVivos = await Vivo.findByIdAndUpdate(req.params.id,req.body).exec()
-        return res.status(200).json(atualizarVivos)
+        return res.status(200).json({
+            sucess: true,
+            message: "Dados atalizados com sucesso",
+            data:atualizarVivos
+        })
     } catch (error) {
         return res.status(400).json({message: error.message })
     };
@@ -29,7 +33,7 @@ export const atualizarVivo = async(req,res)=>{
 
 export const deletarVivo = async(req,res)=>{
     try {
-        const vivoDeletado = await Vivo.findByIdAndDelete(req.params.id, req.body).exec()
+        const vivoDeletado = await Vivo.findByIdAndUpdate(req.params.id,req.body).exec()
         return res.status(200).json(vivoDeletado)
     } catch (error) {
         return res.status(400).json({message: error.message})

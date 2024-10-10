@@ -10,5 +10,13 @@ routerVivo
 routerVivo
     .route("/")
     .get((req,res)=> listarVivo(req,res))
+
+routerVivo
+    .route("/:id")
+    .put((req,res)=> atualizarVivo(req,res))
+
+routerVivo
+    .route("/:id")
+    .delete((req,res)=> deletarVivo(req,res))
     
 export default routerVivo
